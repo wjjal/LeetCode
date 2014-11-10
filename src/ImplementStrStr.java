@@ -1,22 +1,22 @@
 //Implement strStr().
-//
-//Returns a pointer to the first occurrence of needle in haystack, 
-//or null if needle is not part of haystack.
+
+//Returns the index of the first occurrence of needle in haystack, or -1 
+//if needle is not part of haystack.
 
 public class ImplementStrStr {
 	public class Solution {
-		public String strStr(String haystack, String needle) {
+		public int strStr(String haystack, String needle) {
 			if (needle.length() == 0)
-				return haystack;
+				return 0;
 			if (haystack.length() < needle.length())
-				return null;
+				return -1;
 			int[] next = new int[needle.length()];
 			get_next(needle, next);
 			int pos = Index_KMP(haystack, needle, next, 0);
 			if (pos != -1)
-				return haystack.substring(pos);
+				return pos;
 			else
-				return null;
+				return -1;
 		}
 
 		void get_next(String t, int[] next) {

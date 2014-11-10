@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 //Given an array S of n integers, are there elements a, b, c, 
 //and d in S such that a + b + c + d = target? Find all unique quadruplets 

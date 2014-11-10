@@ -8,10 +8,11 @@ public class LongestCommonPrefix {
 			if (len == 0)
 				return "";
 			for (j = 0;; ++j) {
-				for (i = 0; i < len; ++i)
+				for (i = 0; i < len; ++i) {
 					if (j >= strs[i].length()
 							|| strs[i].charAt(j) != strs[0].charAt(j))
 						break;
+				}
 				if (i < len)
 					break;
 				result += strs[0].charAt(j);

@@ -27,7 +27,6 @@ public class GasStation {
 				}
 				total += curRemain;
 			}
-
 			return total >= 0 ? startIndex : -1;
 		}
 	}

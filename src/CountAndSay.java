@@ -9,6 +9,9 @@
 //Note: The sequence of integers will be represented as a string.
 
 public class CountAndSay {
+	public static void main(String[] args){
+		System.out.println(new CountAndSay().new Solution().countAndSay(5));
+	}
 	public class Solution {
 		public String countAndSay(int n) {
 			String re = "1";

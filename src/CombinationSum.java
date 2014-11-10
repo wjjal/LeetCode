@@ -18,27 +18,31 @@ import java.util.Arrays;
 
 public class CombinationSum {
 	public class Solution {
-	    public ArrayList<ArrayList<Integer>> combinationSum(int[] a, int target) {
-	        ArrayList<ArrayList<Integer>> res=new ArrayList<ArrayList<Integer>>();
-	        ArrayList<Integer> l=new ArrayList<Integer>();
-	        Arrays.sort(a);
-	        solve(a,target,0,0,l,res);
-	        return res;
-	    }
+		public ArrayList<ArrayList<Integer>> combinationSum(int[] a, int target) {
+			ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+			ArrayList<Integer> l = new ArrayList<Integer>();
+			Arrays.sort(a);
+			solve(a, target, 0, 0, l, res);
+			return res;
+		}
 
 		public void solve(int[] a, int target, int sum, int i,
-				ArrayList<Integer> l, ArrayList<ArrayList<Integer>> res){
-	        if(sum==target){ res.add(l); return;}
-	        if(sum>target||i>=a.length) return;
-	        int n=0;
-	        while(n*a[i]+sum<=target){
-	            solve(a,target,sum+n*a[i],i+1,l,res);
-	            ArrayList<Integer> tmp=new ArrayList<Integer>(l);
-	            l=tmp;
-	            l.add(a[i]);
-	            n++;
-	        }
-	        return;
-	    }
+				ArrayList<Integer> l, ArrayList<ArrayList<Integer>> res) {
+			if (sum == target) {
+				res.add(l);
+				return;
+			}
+			if (sum > target || i >= a.length)
+				return;
+			int n = 0;
+			while (n * a[i] + sum <= target) {
+				solve(a, target, sum + n * a[i], i + 1, l, res);
+				ArrayList<Integer> tmp = new ArrayList<Integer>(l);
+				l = tmp;
+				l.add(a[i]);
+				n++;
+			}
+			return;
+		}
 	}
 }

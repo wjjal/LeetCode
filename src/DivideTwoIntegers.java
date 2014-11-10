@@ -1,6 +1,11 @@
 //Divide two integers without using multiplication, division and mod operator.
 
 public class DivideTwoIntegers {
+	public static void main(String[] args) {
+		System.out.println(new DivideTwoIntegers().new Solution().divide(5432,
+				8));
+	}
+
 	public class Solution {
 		public int divide(int dividend, int divisor) {
 			int res = 0;

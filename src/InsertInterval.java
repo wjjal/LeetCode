@@ -19,7 +19,6 @@ public class InsertInterval {
 				ArrayList<Interval> re = new ArrayList<Interval>();
 				int start = newInterval.start;
 				int end = newInterval.end;
-				
 				for (int i = 0; i < intervals.size(); i++) {
 					Interval temp = intervals.get(i);
 					if (temp.end < start)

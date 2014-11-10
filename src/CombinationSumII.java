@@ -19,32 +19,36 @@ import java.util.Arrays;
 //[1, 1, 6] 
 
 public class CombinationSumII {
+	public static void main(String[] args) {
+		int a[] = { 1, 2 };
+		int target = 1;
+		new CombinationSumII().new Solution().combinationSum2(a, target);
+	}
+
 	public class Solution {
 		public ArrayList<ArrayList<Integer>> combinationSum2(int[] a, int target) {
 			ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-			ArrayList<Integer> l = new ArrayList<Integer>();
+			ArrayList<Integer> temp = new ArrayList<Integer>();
 			Arrays.sort(a);
-			solve(a, target, 0, 0, l, res);
+			solve(a, target, 0, temp, res);
 			return res;
 		}
 
-		public void solve(int[] a, int target, int sum, int i,
-				ArrayList<Integer> l, ArrayList<ArrayList<Integer>> res) {
-			if (sum == target) {
-				if (res.contains(l))
-					return;
-				res.add(l);
+		public void solve(int[] a, int target, int start,
+				ArrayList<Integer> temp, ArrayList<ArrayList<Integer>> res) {
+			if (target == 0) {
+				res.add(new ArrayList<Integer>(temp));
 				return;
 			}
-			if (sum > target || i >= a.length)
+			if (target < 0 || start >= a.length)
 				return;
-			if (a[i] + sum <= target) {
-				ArrayList<Integer> tmp = new ArrayList<Integer>(l);
-				tmp.add(a[i]);
-				solve(a, target, sum + a[i], i + 1, tmp, res);
-				solve(a, target, sum, i + 1, l, res);
+			for (int i = start; i < a.length; i++) {
+				if (i > start && a[i] == a[i - 1])
+					continue;
+				temp.add(a[i]);
+				solve(a, target - a[i], i + 1, temp, res);
+				temp.remove(temp.size() - 1);
 			}
-			return;
 		}
 	}
 }

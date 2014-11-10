@@ -10,8 +10,33 @@
 //Try to do this in one pass.
 
 public class RemoveNthNodeFromEndOfList {
+	public static void main(String[] args) {
+		ListNode head = new ListNode(1);
+		new RemoveNthNodeFromEndOfList().new Solution().removeNthFromEnd1(head,
+				1);
+	}
+
 	public class Solution {
-		public ListNode removeNthFromEnd(ListNode head, int n) {
+		public ListNode removeNthFromEnd1(ListNode head, int n) {
+			ListNode pre_head = new ListNode(0);
+			pre_head.next = head;
+			ListNode pre_slow = pre_head;
+			ListNode slow = head;
+			ListNode fast = head;
+			while (n > 0) {
+				fast = fast.next;
+				n--;
+			}
+			while (fast != null) {
+				fast = fast.next;
+				pre_slow = pre_slow.next;
+				slow = slow.next;
+			}
+			pre_slow.next = slow.next;
+			return pre_head.next;
+		}
+
+		public ListNode removeNthFromEnd2(ListNode head, int n) {
 			ListNode pre_head = new ListNode(0);
 			pre_head.next = head;
 			ListNode slow = pre_head;

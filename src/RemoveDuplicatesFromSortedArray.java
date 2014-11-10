@@ -12,21 +12,14 @@
 public class RemoveDuplicatesFromSortedArray {
 	public class Solution {
 		public int removeDuplicates(int[] A) {
-			int len = A.length;
-			if (len <= 1)
-				return len;
-			int re = len;
-			int j = 0;
-			for (int i = 1; i < len; i++) {
-				if (A[i] == A[j]) {
-					re--;
-				}
-				if (A[i] != A[j]) {
-					A[j + 1] = A[i];
-					j++;
-				}
+			if (A.length == 0)
+				return 0;
+			int num = 1;
+			for (int i = 1; i < A.length; i++) {
+				if (A[i] != A[i - 1])
+					A[num++] = A[i];
 			}
-			return re;
+			return num;
 		}
 	}
 }
