@@ -7,6 +7,12 @@
 //You may assume no duplicate exists in the array.
 
 public class FindMinimumInRotatedSortedArray {
+	public static void main(String[] args) {
+		int num[] = { 2, 3, 4, 5, 1 };
+		System.out.println(new FindMinimumInRotatedSortedArray().new Solution()
+				.findMin1(num));
+	}
+
 	public class Solution {
 		public int findMin1(int[] num) {
 			int begin = 0;

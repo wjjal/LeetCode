@@ -47,7 +47,8 @@ public class FindMinimumInRotatedSortedArrayII {
 					}
 					return min;
 				}
-				if (num[mid] >= num[start])
+				// if(num[mid]>=num[start]),最小值必在右边，倾向于向右夹逼
+				if (num[mid] > num[end])
 					start = mid + 1;
 				else
 					end = mid;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 //Given a string s and a dictionary of words dict, 
@@ -13,7 +14,7 @@ import java.util.Set;
 //A solution is ["cats and dog", "cat sand dog"].
 public class WordBreakII {
 	public class Solution {
-		public ArrayList<String> wordBreak(String s, Set<String> dict) {
+		public List<String> wordBreak(String s, Set<String> dict) {
 			int len = s.length();
 			boolean dp[] = new boolean[len + 1];
 			ArrayList<ArrayList<Integer>> prev = new ArrayList<ArrayList<Integer>>();
@@ -29,13 +30,13 @@ public class WordBreakII {
 					}
 				}
 			}
-			ArrayList<String> result = new ArrayList<String>();
+			List<String> result = new ArrayList<String>();
 			buildResult(s, prev, len, result, "");
 			return result;
 		}
 
-		private void buildResult(String s, ArrayList<ArrayList<Integer>> prev,
-				int end, ArrayList<String> result, String current) {
+		private void buildResult(String s, List<ArrayList<Integer>> prev,
+				int end, List<String> result, String current) {
 			ArrayList<Integer> prevs = prev.get(end);
 			for (int i = 0; i < prevs.size(); i++) {
 				int n = prevs.get(i);

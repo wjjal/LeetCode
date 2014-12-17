@@ -6,6 +6,9 @@
 //Return "100".
 
 public class AddBinary {
+	public static void main(String[] args){
+		 System.out.println(new AddBinary().new Solution().addBinary("1", "111"));
+	}
 	public class Solution {
 		public String addBinary(String a, String b) {
 			if (a.length() == 0)
