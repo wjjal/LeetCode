@@ -15,6 +15,12 @@
 //]
 //The total number of unique paths is 2.
 public class UniquePathsII {
+	public static void main(String[] args) {
+		int[][] a = { { 1 }, { 0 } };
+		System.out.println(new UniquePathsII().new Solution2()
+				.uniquePathsWithObstacles(a));
+	}
+
 	public class Solution {
 		public int uniquePathsWithObstacles(int[][] obstacleGrid) {
 			int m = obstacleGrid.length;
@@ -46,22 +52,21 @@ public class UniquePathsII {
 
 	public class Solution2 {
 		public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-			if (obstacleGrid == null || obstacleGrid.length == 0
-					|| obstacleGrid[0].length == 0)
-				return 0;
-			int[] res = new int[obstacleGrid[0].length];
-			res[0] = 1;
-			for (int i = 0; i < obstacleGrid.length; i++) {
-				for (int j = 0; j < obstacleGrid[0].length; j++) {
-					if (obstacleGrid[i][j] == 1) {
-						res[j] = 0;
-					} else {
+			int m = obstacleGrid.length;
+			int n = obstacleGrid[0].length;
+			int dp[] = new int[n];
+			dp[0] = 1;
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					if (obstacleGrid[i][j] == 1)
+						dp[j] = 0;
+					else {
 						if (j > 0)
-							res[j] += res[j - 1];
+							dp[j] += dp[j - 1];
 					}
 				}
 			}
-			return res[obstacleGrid[0].length - 1];
+			return dp[n - 1];
 		}
 	}
 }

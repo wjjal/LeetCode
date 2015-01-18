@@ -11,6 +11,10 @@
 //   2     1         2                 3
 
 public class UniqueBinarySearchTrees {
+	public static void main(String[] args) {
+		new UniqueBinarySearchTrees().new Solution2().numTrees(3);
+	}
+
 	public class Solution {
 		public int numTrees(int n) {
 			int num[] = new int[n + 1];
@@ -22,31 +26,21 @@ public class UniqueBinarySearchTrees {
 			return num[n];
 
 		}
+	}
+
+	public class Solution2 {
+		public int numTrees(int n) {
+			return numTrees(1, n);
+		}
 
 		public int numTrees(int start, int end) {
 			if (start >= end)
 				return 1;
 			int totalNum = 0;
-			for (int i = start; i <= end; i++) {
+			for (int i = start + 1; i < end; i++) {
 				totalNum += numTrees(start, i - 1) * numTrees(i + 1, end);
 			}
 			return totalNum;
 		}
-	}
-	
-	public class Solution2 {
-	    public int numTrees(int n) {
-	        return numTrees(1,n);
-	    }
-	    
-	    public int numTrees(int start,int end){
-	        if (start >= end)  
-	            return 1;  
-	        int totalNum = 0;
-	        for(int i = start;i<=end;i++){
-	            totalNum += numTrees(start, i-1)*numTrees(i+1,end);
-	        }
-	        return totalNum;
-	    }
 	}
 }

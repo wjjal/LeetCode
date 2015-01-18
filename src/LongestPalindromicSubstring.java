@@ -3,8 +3,50 @@
 //and there exists one unique longest palindromic substring.
 
 public class LongestPalindromicSubstring {
+	public static void main(String[] args) {
+		String s = "c";
+		System.out.println(new LongestPalindromicSubstring().new Solution()
+				.longestPalindrome1(s));
+	}
+
 	public class Solution {
-		public String longestPalindrome(String s) {
+		public String longestPalindrome1(String s) {
+			StringBuffer sb = new StringBuffer();
+			sb.append("$");
+			for (int i = 0; i < s.length(); i++) {
+				sb.append("#");
+				sb.append(s.charAt(i));
+			}
+			sb.append("#");
+			int len = sb.length();
+			int[] p = new int[len];
+			int mx = 0;
+			int id = 0;
+			for (int i = 1; i < len; i++) {
+				if (mx > i)
+					p[i] = Math.min(p[2 * id - i], mx - i);
+				else
+					p[i] = 1;
+				while (i + p[i] < len
+						&& sb.charAt(i + p[i]) == sb.charAt(i - p[i]))
+					p[i]++;
+				if (i + p[i] > mx) {
+					mx = i + p[i];
+					id = i;
+				}
+			}
+			int maxlen = 0;
+			int center = 0;
+			for (int i = 0; i < len; i++) {
+				if (p[i] > maxlen) {
+					maxlen = p[i];
+					center = i;
+				}
+			}
+			return s.substring((center-maxlen) / 2 , (center + maxlen) / 2 - 1);
+		}
+
+		public String longestPalindrome2(String s) {
 			if (s.isEmpty()) {
 				return null;
 			}

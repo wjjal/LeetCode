@@ -13,8 +13,28 @@ import java.util.HashMap;
 //Output: index1=1, index2=2
 
 public class TwoSum {
+	public static void main(String[] args) {
+		int[] numbers = { 3, 2, 4 };
+		new TwoSum().new Solution().twoSum1(numbers, 6);
+	}
+
 	public class Solution {
-		public int[] twoSum(int[] numbers, int target) {
+		public int[] twoSum1(int[] numbers, int target) {
+	        int re[] = new int[2];
+	        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+	        for(int i =0;i<numbers.length;i++){
+	            int tmp =target-numbers[i];
+	            if(map.containsKey(tmp)){
+	                re[0] = map.get(tmp)+1;
+	                re[1] = i+1;
+	            }else {
+	                map.put(numbers[i],i);
+	            }
+	        }
+	        return re;
+	    }
+
+		public int[] twoSum2(int[] numbers, int target) {
 			int len = numbers.length;
 			assert (len >= 2);
 			int[] ret = new int[2];

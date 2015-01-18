@@ -1,8 +1,9 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 //Given two words (start and end), and a dictionary, find all 
 //shortest transformation sequence(s) from start to end, such that:
@@ -25,33 +26,44 @@ import java.util.LinkedList;
 //All words contain only lowercase alphabetic characters.
 
 public class WordLadderII {
+	public static void main(String[] args){
+		String start = "red";
+		String end = "tax";
+		Set<String> dict = new HashSet<String>();
+		dict.add("ted");
+		dict.add("tex");
+		dict.add("red");
+		dict.add("tax");
+		dict.add("tad");
+		dict.add("den");
+		dict.add("rex");
+		dict.add("pee");
+		new WordLadderII().new Solution().findLadders(start,end,dict);
+	}
+	
 	public class Solution {
-		public ArrayList<ArrayList<String>> findLadders(String start,
-				String end, HashSet<String> dict) {
-			ArrayList<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
+	    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+	        List<List<String>> re = new ArrayList<List<String>>();
 			if (start == null || end == null)
-				return res;
-			ArrayList<String> tmparray = new ArrayList<String>();
-
-			// 如果start与end相等，直接返回
-			if (start.equals(end)) {
-				tmparray.add(start);
-				tmparray.add(end);
-				res.add(tmparray);
-				return res;
+				return re;
+			LinkedList<String> tmp = new LinkedList<String>();
+			if(start.equals(end)){
+			    tmp.add(start);
+			    tmp.add(end);
+			    re.add(tmp);
+			    return re;
 			}
-
-			// 新建一个hashmap，保存每个节点的所有前驱。
+			
+	        
 			HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 			map.put(end, new ArrayList<String>());
 			map.put(start, new ArrayList<String>());
 			for (String s : dict) {
 				map.put(s, new ArrayList<String>());
 			}
-
-			// 利用bfs 层序遍历 如果队列中有end 那么结束遍历（到最短的一层就结束）
-			LinkedList<String> queue = new LinkedList<String>();
-			queue.offer(start);
+			
+	        LinkedList<String> queue = new LinkedList<String>();
+	        queue.offer(start);
 			ArrayList<String> currentlevel = new ArrayList<String>();
 			while (!queue.isEmpty()) {
 				int level = queue.size();
@@ -62,19 +74,17 @@ public class WordLadderII {
 						dict.remove(top);
 					currentlevel.add(top);
 				}
-
-				// 循环每个String的每个char 从a到z，在dict里面找是否有
+				boolean flag = false;
 				for (String curs : currentlevel) {
 					for (int i = 0; i < curs.length(); ++i) {
 						for (char j = 'a'; j <= 'z'; ++j) {
-							char[] tmpchar = curs.toCharArray();
-							tmpchar[i] = j;
-							String tmps = new String(tmpchar);
-							if (!curs.equals(start) && tmps.equals(end)) {
+							char[] tmpchars = curs.toCharArray();
+							tmpchars[i] = j;
+							String tmps = new String(tmpchars);
+							if (tmps.equals(end)) {
 								map.get(end).add(curs);
-								queue.offer(tmps);
-							} else if (!tmps.equals(curs)
-									&& dict.contains(tmps)) {
+								flag = true;
+							} else if (!tmps.equals(curs) && dict.contains(tmps)) {
 								if (!queue.contains(tmps))
 									queue.offer(tmps);
 								map.get(tmps).add(curs);
@@ -82,30 +92,25 @@ public class WordLadderII {
 						}
 					}
 				}
-				if (queue.contains(end))
+				if (flag)
 					break;
 			}
-			tmparray.add(end);
-			buildpath(start, end, map, tmparray, res);
-			return res;
+			tmp.add(end);
+			buildPath(start, end, map, tmp, re);
+			return re;
 		}
-
-		// 根据节点的前驱 生成路径
-		public void buildpath(String start, String end,
-				HashMap<String, ArrayList<String>> map,
-				ArrayList<String> tmparray, ArrayList<ArrayList<String>> res) {
-			ArrayList<String> pre = map.get(end);
-			if (end.equals(start)) {
-				ArrayList<String> tmparray2 = new ArrayList<String>(tmparray);
-				Collections.reverse(tmparray2);
-				res.add(tmparray2);
-				return;
-			}
-			for (String s : pre) {
-				tmparray.add(s);
-				buildpath(start, s, map, tmparray, res);
-				tmparray.remove(tmparray.size() - 1);
-			}
+		
+		public void buildPath(String start, String cur, HashMap<String, ArrayList<String>> map, LinkedList<String> tmp, List<List<String>> re) {
+		    ArrayList<String> pre = map.get(cur);
+		    if(cur.equals(start)){
+		        re.add(new LinkedList<String>(tmp));
+		        return;
+		    }
+		    for(String s : pre){
+		        tmp.addFirst(s);
+		        buildPath(start,s,map,tmp,re);
+		        tmp.removeFirst();
+		    }
 		}
 	}
 }

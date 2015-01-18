@@ -6,6 +6,11 @@
 //Could you do this in-place?
 
 public class RotateImage {
+	public static void main(String[] args){
+	   int[][] matrix = {{1,2},{3,4}};
+	   new 	RotateImage().new Solution().rotate(matrix);
+	}
+	
 	public class Solution {
 		public void rotate(int[][] matrix) {
 			int n = matrix.length - 1;

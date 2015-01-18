@@ -17,9 +17,6 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 			if (l1 > r1) {
 				return null;
 			}
-			if (l1 == r1) {
-				return new TreeNode(inorder[l1]);
-			}
 			TreeNode node = new TreeNode(postorder[r2]);
 			for (int i = l1; i <= r1; i++) {
 				if (inorder[i] == postorder[r2]) {

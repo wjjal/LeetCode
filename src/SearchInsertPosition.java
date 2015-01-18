@@ -10,6 +10,13 @@
 //[1,3,5,6], 0 ¡ú 0
 
 public class SearchInsertPosition {
+	public static void main(String[] args) {
+		int[] A = { 3, 5, 7, 9, 10 };
+		int target = 8;
+		System.out.println(new SearchInsertPosition().new Solution()
+				.searchInsert(A, target));
+	}
+
 	public class Solution {
 		public int searchInsert(int[] A, int target) {
 			int n = A.length;
