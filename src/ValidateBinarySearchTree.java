@@ -7,12 +7,17 @@
 //Both the left and right subtrees must also be binary search trees.
 
 public class ValidateBinarySearchTree {
+	public static void main(String[] args){
+		TreeNode node = new TreeNode(0);
+		new ValidateBinarySearchTree().new Solution().isValidBST(node); 
+	}
+	
 	public class Solution {
 		public boolean isValidBST(TreeNode root) {
-			return check(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+			return check(root, Long.MIN_VALUE, Long.MAX_VALUE);
 		}
 
-		public boolean check(TreeNode node, int leftval, int rightval) {
+		public boolean check(TreeNode node, long leftval, long rightval) {
 			if (node == null)
 				return true;
 			return (leftval < node.val && rightval > node.val

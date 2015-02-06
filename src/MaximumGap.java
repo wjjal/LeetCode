@@ -11,7 +11,7 @@
 //桶排序
 public class MaximumGap {
 	public static void main(String[] args) {
-		int num[] = { 100, 3, 2, 1 };
+		int num[] = { 1, 10000 };
 		System.out.println(new MaximumGap().new Solution().maximumGap(num));
 	}
 
@@ -29,8 +29,7 @@ public class MaximumGap {
 			}
 			// 计算桶间隔
 			int gap = (max - min) / (len - 1);
-			if (gap * (len - 1) < (max - min))
-				gap++;
+			gap++;
 
 			int[] min_value = new int[len - 1];
 			int[] max_value = new int[len - 1];
@@ -40,14 +39,8 @@ public class MaximumGap {
 			}
 			for (int i : num) {
 				int index = (i - min) / gap;
-				// 最大值放入最大的桶，并作为最大桶的最大值，并更新桶的最小值(若桶为空)
-				if (index > len - 2) {
-					max_value[len - 2] = i;
-					min_value[len - 2] = Math.min(min_value[len - 2], i);
-				} else {
-					min_value[index] = Math.min(min_value[index], i);
-					max_value[index] = Math.max(max_value[index], i);
-				}
+				min_value[index] = Math.min(min_value[index], i);
+				max_value[index] = Math.max(max_value[index], i);
 			}
 			int re = max_value[0] - min_value[0];
 			int prev = max_value[0];
