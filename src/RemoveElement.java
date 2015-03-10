@@ -14,5 +14,17 @@ public class RemoveElement {
 			}
 			return num;
 		}
+
+		public int removeElement2(int[] A, int elem) {
+			int i = 0, j = A.length - 1;
+			while (i <= j) {
+				if (A[i] == elem)
+					A[i] = A[j--];
+				else
+					i++;
+			}
+			return j + 1;
+		}
+
 	}
 }

@@ -15,26 +15,26 @@ import java.util.ArrayList;
 
 public class InsertInterval {
 	public class Solution {
-	    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
-				ArrayList<Interval> re = new ArrayList<Interval>();
-				int start = newInterval.start;
-				int end = newInterval.end;
-				for (int i = 0; i < intervals.size(); i++) {
-					Interval temp = intervals.get(i);
-					if (temp.end < start)
-						re.add(temp);
-					else if (temp.start > end){
-						re.add(new Interval(start,end));
-						start = temp.start;
-						end = temp.end;
-					}
-					else {
-						start = Math.min(start, temp.start);
-						end = Math.max(end, temp.end);
-					}
+		public ArrayList<Interval> insert(ArrayList<Interval> intervals,
+				Interval newInterval) {
+			ArrayList<Interval> re = new ArrayList<Interval>();
+			int start = newInterval.start;
+			int end = newInterval.end;
+			for (int i = 0; i < intervals.size(); i++) {
+				Interval temp = intervals.get(i);
+				if (temp.end < start)
+					re.add(temp);
+				else if (temp.start > end) {
+					re.add(new Interval(start, end));
+					start = temp.start;
+					end = temp.end;
+				} else {
+					start = Math.min(start, temp.start);
+					end = Math.max(end, temp.end);
 				}
-				re.add(new Interval(start,end));
-				return re;
 			}
+			re.add(new Interval(start, end));
+			return re;
+		}
 	}
 }
