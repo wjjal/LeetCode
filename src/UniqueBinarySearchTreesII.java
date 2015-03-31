@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 //Given n, generate all structurally unique BST's (binary search trees) 
 //that store values 1...n.
@@ -13,20 +14,19 @@ import java.util.ArrayList;
 //   2     1         2                 3
 public class UniqueBinarySearchTreesII {
 	public class Solution {
-		public ArrayList<TreeNode> generateTrees(int n) {
+		public List<TreeNode> generateTrees(int n) {
 			return dfs(1, n);
 		}
 
-		private ArrayList<TreeNode> dfs(int start, int end) {
-			ArrayList<TreeNode> result = new ArrayList<>();
+		private List<TreeNode> dfs(int start, int end) {
+			List<TreeNode> result = new ArrayList<TreeNode>();
 			if (start > end) {
 				result.add(null);
 				return result;
 			}
 			for (int i = start; i <= end; i++) {
-				// left和right至少会有一个元素null！
-				ArrayList<TreeNode> lefts = dfs(start, i - 1);
-				ArrayList<TreeNode> rights = dfs(i + 1, end);
+				List<TreeNode> lefts = dfs(start, i - 1);
+				List<TreeNode> rights = dfs(i + 1, end);
 				for (TreeNode left : lefts) {
 					for (TreeNode right : rights) {
 						TreeNode node = new TreeNode(i);

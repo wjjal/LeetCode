@@ -18,6 +18,10 @@
 //isMatch("aab", "c*a*b") ¡ú false
 
 public class WildcardMatching {
+	public static void main(String[] args){
+	   System.out.println(new WildcardMatching().new Solution().isMatch("aa", "*"));	
+	}
+	
 	public class Solution {
 		public boolean isMatch(String s, String p) {
 			int i = 0;
