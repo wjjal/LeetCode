@@ -20,13 +20,13 @@ public class L198HouseRobber {
 				return 0;
 			if (len == 1)
 				return num[0];
-			int dp[] = new int[len + 1];
-			dp[1] = num[0];
-			dp[2] = num[1];
-			for (int i = 3; i <= len; i++) {
-				dp[i] = Math.max(dp[i - 2], dp[i - 3]) + num[i - 1];
+			int dp[] = new int[len];
+			dp[0] = num[0];
+			dp[1] = Math.max(num[0], num[1]);
+			for (int i = 2; i < len; i++) {
+				dp[i] = Math.max(dp[i - 1], dp[i - 2] + num[i]);
 			}
-			return Math.max(dp[len], dp[len - 1]);
+			return dp[len - 1];
 		}
 
 		public int rob2(int[] num) {
@@ -35,16 +35,14 @@ public class L198HouseRobber {
 				return 0;
 			if (len == 1)
 				return num[0];
-			int a = 0;
-			int b = num[0];
-			int c = num[1];
+			int pre = num[0];
+			int cur = Math.max(num[0], num[1]);
 			for (int i = 2; i < len; i++) {
-				int cur = Math.max(a, b) + num[i];
-				a = b;
-				b = c;
-				c = cur;
+				int next = Math.max(cur, pre + num[i]);
+				pre = cur;
+				cur = next;
 			}
-			return Math.max(c, b);
+			return cur;
 		}
 
 	}
