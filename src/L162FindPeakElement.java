@@ -1,8 +1,8 @@
 //A peak element is an element that is greater than its neighbors.
 //
-//Given an input array where num[i] ¡Ù num[i+1], find a peak element and return its index.
+//Given an input array where arr[i] ¡Ù arr[i+1], find a peak element and return its index.
 //
-//You may imagine that num[-1] = num[n] = -¡Ş.
+//You may imagine that arr[-1] = arr[n] = -¡Ş.
 //
 //For example, in array [1, 2, 3, 1], 3 is a peak element and your function should 
 //return the index number 2.
